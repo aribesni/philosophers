@@ -41,6 +41,8 @@ long int	ft_get_time(void)
 
 int	ft_exit(char *error)
 {
-	printf("%s\n", error);
+	ft_putstr_fd("Error : ", 2);
+	ft_putstr_fd(error, 2);
+	ft_putstr_fd("\n", 2);
 	return (1);
 }

@@ -67,8 +67,6 @@ static int	ft_init_philo_2(t_arg *arg, t_philo *philo, int *i)
 	philo[*i].prev_meal = ft_get_time();
 	philo[*i].life = arg->tto_die;
 	philo[*i].stop = 0;
-	if (arg->nb_philo == 1)
-		return (0);
 	philo[*i].l_f = &arg->forks[philo[*i].philo_id];
 	philo[*i].r_f = &arg->forks[(philo[*i].philo_id + 1) % arg->nb_philo];
 	philo[*i].arg = arg;

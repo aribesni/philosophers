@@ -14,17 +14,20 @@
 
 int	ft_count_meals(t_philo *philo)
 {
-	int	flag_enough;
+	int	done;
 	int	i;
 
 	if (philo->nb_meal != -1 && philo->total_meals > 0)
 	{
-		flag_enough = 1;
-		i = -1;
-		while (++i < philo->nb_philo)
+		done = 1;
+		i = 0;
+		while (i < philo->nb_philo)
+		{
 			if (philo[i].nb_meal < philo->total_meals)
-				flag_enough = 0;
-		if (flag_enough == 1)
+				done = 0;
+			i++;
+		}
+		if (done == 1)
 		{
 			i = 0;
 			while (i < philo[i].nb_philo)
@@ -50,6 +53,7 @@ static void	ft_philo_died(t_philo *philo, int i)
 		philo[i].stop = 1;
 		i++;
 	}
+	pthread_mutex_unlock(&philo->print_status);
 }
 
 void	*ft_is_dead(void *args)
@@ -62,8 +66,8 @@ void	*ft_is_dead(void *args)
 	philo = (t_philo *)args;
 	while (philo[i].stop == 0)
 	{
-		i = -1;
-		while (++i < philo->nb_philo)
+		i = 0;
+		while (i < philo->nb_philo)
 		{
 			time = ft_get_time();
 			if (time - philo[i].prev_meal > philo[i].life)
@@ -72,6 +76,7 @@ void	*ft_is_dead(void *args)
 				pthread_mutex_unlock(&philo->print_status);
 				return (NULL);
 			}
+			i++;
 		}
 		if (ft_count_meals(philo) || philo->stop)
 			return (NULL);

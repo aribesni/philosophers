@@ -54,6 +54,7 @@ typedef struct s_arg
 
 void				ft_end_process(t_arg *arg);
 void				ft_free(t_arg *arg);
+void				ft_putstr_fd(char *s, int fd);
 void				ft_usleep(long int time);
 void				*ft_threads(void *args);
 void				*ft_is_dead(void *args);

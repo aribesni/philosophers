@@ -26,7 +26,7 @@ INCLUDES = 	./includes/philo.h
 OBJS = 		${SRCS:.c=.o}
 
 ${NAME} : 	${OBJS}
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS} -I ${INCLUDES} -lpthread -g -fsanitize=address
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS} -I ${INCLUDES} -lpthread #-g -fsanitize=address
 
 .c.o :
 			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
